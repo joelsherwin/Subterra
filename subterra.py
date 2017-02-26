@@ -6,15 +6,15 @@ import time
 import urllib2
 import sys
 arr1 = os.listdir("I:\Movies")
-path1 = 'I:\Movies\\' + arr1[0]
-print path1
+
+
 
 def calc_hash(filepath):
     readsize = 64*1024 #64kb
     with open(filepath,'rb') as file:
         size = os.path.getsize(filepath)
         data = file.read(readsize)
-        
+
         file.seek(-readsize,os.SEEK_END)
         data += file.read(readsize)
         return hashlib.md5(data).hexdigest()
@@ -44,7 +44,5 @@ def get_subtitles(path):
 
         with open(path+".srt","wb") as file1:
             file1.write(response)
-        
-get_subtitles(path1)
-
-
+for files in arr1:
+        get_subtitles(files)
