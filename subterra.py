@@ -6,7 +6,8 @@ import time
 import urllib2
 import sys
 arr1 = os.listdir("I:\Movies")
-
+prePath = "I:\Movies\\"
+replace = [".avi",".mp4",".mkv",".mpg",".mpeg",".mov"]
 
 
 def calc_hash(filepath):
@@ -32,7 +33,7 @@ def get_subtitles(path):
         print 'Searching for subtitles...'
         print '[',
         while(i<5):
-            time.sleep(1)
+            time.sleep(0.1)
             print '####',
             i = i+1
         print ']'
@@ -44,5 +45,12 @@ def get_subtitles(path):
 
         with open(path+".srt","wb") as file1:
             file1.write(response)
+            
 for files in arr1:
-        get_subtitles(files)
+        
+        if '.str' in files:
+            continue
+        else:
+            print 'Looking for subtitles for',files
+            path1 = prePath+files
+            get_subtitles(path1)
