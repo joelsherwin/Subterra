@@ -14,7 +14,6 @@ def calc_hash(filepath):
     with open(filepath,'rb') as file:
         size = os.path.getsize(filepath)
         data = file.read(readsize)
-
         file.seek(-readsize,os.SEEK_END)
         data += file.read(readsize)
         return hashlib.md5(data).hexdigest()
@@ -32,7 +31,7 @@ def get_subtitles(path):
         print 'Searching for subtitles...'
         print '[',
         while(i<5):
-            time.sleep(1)
+            time.sleep(0.1)
             print '####',
             i = i+1
         print ']'
@@ -41,8 +40,10 @@ def get_subtitles(path):
         url = "http://api.thesubdb.com/?action=download&hash="+hash+"&language=en"
         req = urllib2.Request(url, '', headers)
         response = urllib2.urlopen(req).read()
+        if(urllib2.HTTPError):
+            with open(path+".srt","wb") as file1:
+                file1.write(response)
 
-        with open(path+".srt","wb") as file1:
-            file1.write(response)
-for files in arr1:
-        get_subtitles(files)
+for ch in arr1:
+    path1 = 'I:\Movies\\' + ch
+    get_subtitles(path1)
