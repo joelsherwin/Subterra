@@ -5,8 +5,8 @@ import hashlib
 import time
 import urllib2
 import sys
-arr1 = os.listdir("I:\Movies")
-prePath = "I:\Movies\\"
+
+
 replace = [".avi",".mp4",".mkv",".mpg",".mpeg",".mov"]
 
 
@@ -24,7 +24,7 @@ def get_subtitles(path):
     i=0
     print 'Calculating hash of video file...'
     hash = calc_hash(path)
-    replace = [".avi",".mp4",".mkv",".mpg",".mpeg",".mov"]
+    
     for c in replace:
         path = path.replace(c,"")
     if os.path.exists(path+".srt"):
@@ -38,16 +38,17 @@ def get_subtitles(path):
             i = i+1
         print ']'
         print 'Subtitle Downloaded'
-        headers = { 'User-Agent' : 'SubDB/1.0 (subtitle-downloader/1.0; Subterra_v0.1a)' }
+        print '-------------------------'
+        headers = { 'User-Agent' : 'SubDB/1.0 (subterra/0.1a; Subterra_v0.1a)' }
         url = "http://api.thesubdb.com/?action=download&hash="+hash+"&language=en"
         req = urllib2.Request(url, '', headers)
         response = urllib2.urlopen(req).read()
-
         with open(path+".srt","wb") as file1:
             file1.write(response)
-            
+
+prePath = sys.argv[1]
+arr1 = os.listdir(prePath)
 for files in arr1:
-        
         if '.str' in files:
             continue
         else:
