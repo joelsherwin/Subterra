@@ -6,12 +6,7 @@ import time
 import urllib2
 import sys
 
-<<<<<<< HEAD
 
-=======
-prePath = "I:\Movies\\"  #change this directory to yours
-arr1 = os.listdir(prePath)
->>>>>>> origin/master
 replace = [".avi",".mp4",".mkv",".mpg",".mpeg",".mov"]
 
 
@@ -28,10 +23,6 @@ def get_subtitles(path):
     i=0
     print 'Calculating hash of video file...'
     hash = calc_hash(path)
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/master
     for c in replace:
         path = path.replace(c,"")
     if os.path.exists(path+".srt"):
@@ -56,11 +47,13 @@ def get_subtitles(path):
         print 'Subtitle Downloaded'
 
         print '-------------------------'
+        
 prePath = sys.argv[1]
 arr1 = os.listdir(prePath)
 for files in arr1:
-        if '.str' in files:
+        if ".str" in files:
             continue
+     
         else:
             print 'Looking for subtitles for',files
             path1 = prePath+files
