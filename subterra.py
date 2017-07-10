@@ -1,5 +1,3 @@
-from guessit import guessit
-import tmdbsimple as tmdb
 import os
 import hashlib
 import time
